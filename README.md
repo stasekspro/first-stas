@@ -1,5 +1,5 @@
 # first-stas
 My first project
-<h1 align="center">Стас Учится" target="_blank">Daniil</a> 
+<h1 align="center">Стас Учится 
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 <h3 align="center">Computer science student, IT news writer from Russia 🇷🇺</h3>
