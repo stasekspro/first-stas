@@ -1,4 +1,4 @@
-public class Main {
+public class CodeReview {
     public static void main(String[] args) {
         WebDriver chrome = new ChromeDriver();
 
