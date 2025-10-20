@@ -10,3 +10,5 @@ public class CodeReview {
        // разобрался с xpath
         System.out.println("Стасики Wins: " + catalogLink.getText());
         chrome.quit();
+    }
+}
