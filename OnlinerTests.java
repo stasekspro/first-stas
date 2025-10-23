@@ -29,7 +29,7 @@ public class OnlinerTests {
                 By.cssSelector(".b-top-navigation")));
         WebElement courses = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("ul[class*=\"helpers_hide_desktop\"] span[class*=\"currency-amount\"]")));
-        WebElement weather = wait.until(ExpectedConditions.visibilityOfElementLocated(
+        WebElement weather = chrome.findElement(
                 By.cssSelector("ul[class*=\"helpers_hide_desktop\"] span[class*=\"js-weather\"]")));
         soft.assertTrue(courses.isDisplayed(), "Курсов нет");
         soft.assertTrue(weather.isDisplayed(), "Погоды нет!");
