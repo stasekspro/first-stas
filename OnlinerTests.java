@@ -1,6 +1,6 @@
 public class OnlinerTests {
     @Test
-    public void cart() {
+    public void OpenCartPageWhenCartIconClicked() {
         WebDriver chrome = new ChromeDriver();
 
         chrome.get("https://www.onliner.by");
@@ -18,7 +18,7 @@ public class OnlinerTests {
     }
 
     @Test
-    public void weather() {
+    public void DisplayCurrencyAndWeatherOnHomePage() {
         WebDriver chrome = new ChromeDriver();
         chrome.manage().window().maximize();
         chrome.get("https://www.onliner.by");
