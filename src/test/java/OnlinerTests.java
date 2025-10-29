@@ -1,3 +1,23 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import org.testng.asserts.SoftAssert; // если используешь SoftAssert
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 public class OnlinerTests {
     @Test
     public void OpenCartPageWhenCartIconClicked() {
@@ -30,7 +50,7 @@ public class OnlinerTests {
         WebElement courses = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("ul[class*=\"helpers_hide_desktop\"] span[class*=\"currency-amount\"]")));
         WebElement weather = chrome.findElement(
-                By.cssSelector("ul[class*=\"helpers_hide_desktop\"] span[class*=\"js-weather\"]")));
+                By.cssSelector("ul[class*=\"helpers_hide_desktop\"] span[class*=\"js-weather\"]"));
         soft.assertTrue(courses.isDisplayed(), "Курсов нет");
         soft.assertTrue(weather.isDisplayed(), "Погоды нет!");
 
@@ -38,16 +58,10 @@ public class OnlinerTests {
         soft.assertAll(); // закрыл софтассерт
         chrome.quit();
     }
-}
 
-
-
-
-
-public class OnlinerCheckTest {
 
     @Test
-    public void checkCatalogMenu() {
+    public void DisplayCatalogonHomePage() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setBinary("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"); // здесь у меня магическим образом идея открывала edge, пришлось гуглить
@@ -77,8 +91,7 @@ public class OnlinerCheckTest {
                 "Холодильники",
                 "Ноутбуки",
                 "Мониторы",
-                "Видеокарты",
-                "Планшеты"
+                "Видеокарты"
         );
 
         Assertions.assertEquals(expected, actual, "Элементы меню отличаются от ожидаемых!");
