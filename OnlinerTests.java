@@ -39,3 +39,50 @@ public class OnlinerTests {
         chrome.quit();
     }
 }
+
+
+
+
+
+public class OnlinerCheckTest {
+
+    @Test
+    public void checkCatalogMenu() {
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"); // здесь у меня магическим образом идея открывала edge, пришлось гуглить
+        WebDriver chrome = new ChromeDriver();
+        chrome.manage().window().maximize();
+        chrome.get("https://www.onliner.by");
+        WebDriverWait wait = new WebDriverWait(chrome, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul.project-navigation__list.project-navigation__list_secondary")));
+
+
+        List<WebElement> items = chrome.findElements(By.cssSelector("ul.project-navigation__list.project-navigation__list_secondary li a"));
+        List<String> actual = new ArrayList<>();
+
+        for (WebElement element : items) {
+            String text = element.getText().trim();
+            if (!text.isEmpty()) {
+                actual.add(text);  // здесь помогал чатгпт, откровенно
+            }
+        }
+
+        List<String> expected = Arrays.asList(
+                "Apple iPhone",
+                "Мобильные телефоны",
+                "Автомобильные шины",
+                "Телевизоры",
+                "Стиральные машины",
+                "Холодильники",
+                "Ноутбуки",
+                "Мониторы",
+                "Видеокарты",
+                "Планшеты"
+        );
+
+        Assertions.assertEquals(expected, actual, "Элементы меню отличаются от ожидаемых!");
+
+        chrome.quit();
+    }
+}
