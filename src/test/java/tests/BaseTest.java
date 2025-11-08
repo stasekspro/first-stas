@@ -4,9 +4,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public abstract class BaseTest {
     protected WebDriver chrome;
+    protected Actions actions;
+    protected WebDriverWait wait;
 
     @BeforeEach
     public void setUp() {
@@ -17,6 +23,9 @@ public abstract class BaseTest {
         options.addArguments("--start-maximized");
 
         chrome = new ChromeDriver(options);
+        actions = new Actions(chrome);
+        wait = new WebDriverWait(chrome, Duration.ofSeconds(10));
+        chrome.get("https://www.onliner.by/");
     }
 
     @AfterEach
