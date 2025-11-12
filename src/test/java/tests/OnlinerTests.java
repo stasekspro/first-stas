@@ -1,32 +1,29 @@
 package tests;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class OnlinerTests extends BaseTest {
     @Test
     public void openCartPageWhenCartIconClicked() {
 
-        WebElement cartElement = (new WebDriverWait(chrome, Duration.ofSeconds(10)))
-                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.b-top-profile__cart")));
+        WebElement cartElement =
+                wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.b-top-profile__cart")));
         cartElement.click();
-        (new WebDriverWait(chrome, Duration.ofSeconds(10)))
-                .until(ExpectedConditions.urlContains("cart.onliner.by"));
-        WebElement cartForm = (new WebDriverWait(chrome, Duration.ofSeconds(10)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-form")));
+                wait.until(ExpectedConditions.urlContains("cart.onliner.by"));
+        WebElement cartForm =
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-form")));
         assert cartForm.isDisplayed() : "Корзина не открыта";
         // поменял xpath на css селектор, где по переходу в корзину тест убедился, что я тут
         System.out.println("Стасики Wins: " + cartForm.getText());
@@ -35,7 +32,6 @@ public class OnlinerTests extends BaseTest {
     @Test
     public void displayCurrencyAndWeatherOnHomePage() {
 
-        WebDriverWait wait = new WebDriverWait(chrome, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector(".b-top-navigation")));
         WebElement courses = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -52,8 +48,6 @@ public class OnlinerTests extends BaseTest {
 
     @Test
     public void displayCatalogMenuButtonsonHomePage() {
-
-        WebDriverWait wait = new WebDriverWait(chrome, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul.project-navigation__list.project-navigation__list_secondary")));
 
         List<WebElement> items = chrome.findElements(By.cssSelector("ul.project-navigation__list.project-navigation__list_secondary li a"));
@@ -84,11 +78,8 @@ public class OnlinerTests extends BaseTest {
             "3, Автобарахолка",
             "5, Дома и квартиры"
     })
-    public void openDropdowns(int menuIndex, String dropdownName) {
-        checkDropdownOpens(menuIndex, dropdownName);
-    }
 
-    private void checkDropdownOpens(int menuIndex, String dropdownName) {
+    public void checkDropdownOpensinHomePage(int menuIndex, String dropdownName) {
         WebElement menuItem = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("li.b-main-navigation__item:nth-child(" + menuIndex + ") > span.b-main-navigation__text")
         ));
