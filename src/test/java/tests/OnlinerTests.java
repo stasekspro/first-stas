@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -79,7 +78,7 @@ public class OnlinerTests extends BaseTest {
             "5, Дома и квартиры"
     })
 
-    public void checkDropdownOpensinHomePage(int menuIndex, String dropdownName) {
+    public void checkDropdownOpensInHomePage(int menuIndex, String dropdownName) {
         WebElement menuItem = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("li.b-main-navigation__item:nth-child(" + menuIndex + ") > span.b-main-navigation__text")
         ));
