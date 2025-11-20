@@ -1,14 +1,13 @@
 package pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
     private final Button cartButton;
 
     public HomePage(WebDriver chrome) {
         super(chrome);
-        cartButton = new Button(chrome, "a.auth-bar__item--cart", "Иконка корзины");
+        cartButton = new Button(chrome, By.cssSelector("a.auth-bar__item--cart"), "Иконка корзины");
     }
 
 
@@ -22,12 +21,11 @@ public class HomePage extends BasePage {
         }
     }
 
-    public pages.CartPage openCart() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.auth-bar__item--cart")));
+    public CartPage openCart() {
         cartButton.click();
+        CartPage cartPage = new CartPage(chrome);
+        wait.until(chrome -> cartPage.isPageLoaded());
 
-        wait.until(ExpectedConditions.urlContains("cart.onliner.by"));
-
-        return new pages.CartPage(chrome);
+        return new CartPage(chrome);
     }
 }

@@ -13,10 +13,10 @@ public abstract class BaseElement {
     protected By locator;
     protected String name;
 
-    public BaseElement(WebDriver chrome, String locator, String name) {
+    public BaseElement(WebDriver chrome, By locator, String name) {
         this.chrome = chrome;
         this.wait = new WebDriverWait(chrome, Duration.ofSeconds(10));
-        this.locator = By.cssSelector(locator);
+        this.locator = locator;
         this.name = name;
     }
 
