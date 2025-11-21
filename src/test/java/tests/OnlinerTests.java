@@ -11,21 +11,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import pages.HomePage;
+
 
 
 public class OnlinerTests extends BaseTest {
     @Test
     public void openCartPageWhenCartIconClicked() {
+        pages.HomePage homePage = new HomePage(chrome);
+        pages.CartPage cartPage = homePage.openCart();
 
-        WebElement cartElement =
-                wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.b-top-profile__cart")));
-        cartElement.click();
-                wait.until(ExpectedConditions.urlContains("cart.onliner.by"));
-        WebElement cartForm =
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-form")));
-        assert cartForm.isDisplayed() : "Корзина не открыта";
-        // поменял xpath на css селектор, где по переходу в корзину тест убедился, что я тут
-        System.out.println("Стасики Wins: " + cartForm.getText());
+        assertTrue(cartPage.isPageLoaded(), "Страница корзины не загрузилась");
+        assertTrue(cartPage.isCartFormDisplayed(), "Форма корзины не отображается");
     }
 
     @Test
@@ -40,8 +37,6 @@ public class OnlinerTests extends BaseTest {
         Assertions.assertAll(
                 () -> Assertions.assertTrue(courses.isDisplayed(), "Курсов нет"),
                 () -> Assertions.assertTrue(weather.isDisplayed(), "Погоды нет!"));
-
-        System.out.println("Как же заебало");
     }
 
 
