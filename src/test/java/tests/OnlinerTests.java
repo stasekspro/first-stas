@@ -38,7 +38,7 @@ public class OnlinerTests extends BaseTest {
                 () -> Assertions.assertTrue(courses.isDisplayed(), "Курсов нет"),
                 () -> Assertions.assertTrue(weather.isDisplayed(), "Погоды нет!"));
 
-        System.out.println("Как же заебало");
+        System.out.println("Погода и курсы отобразились");
     }
 
 
