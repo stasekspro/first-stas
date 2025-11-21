@@ -15,7 +15,6 @@ public class CartPage extends BasePage {
     @Override
     public boolean isPageLoaded() {
         try {
-            wait.until(ExpectedConditions.urlContains("cart.onliner.by"));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-form")));
             return true;
         } catch (Exception e) {

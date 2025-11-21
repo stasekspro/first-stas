@@ -26,6 +26,6 @@ public class HomePage extends BasePage {
         CartPage cartPage = new CartPage(chrome);
         wait.until(chrome -> cartPage.isPageLoaded());
 
-        return new CartPage(chrome);
+        return cartPage;
     }
 }
