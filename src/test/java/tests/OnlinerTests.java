@@ -61,7 +61,6 @@ public class OnlinerTests extends BaseTest {
                 "Мониторы",
                 "Видеокарты",
                 "Планшеты"
-
         );
 
         Assertions.assertEquals(expected, actual, "Элементы меню отличаются от ожидаемых!");
